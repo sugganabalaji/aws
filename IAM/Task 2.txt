@@ -1,0 +1,18 @@
+4: Create a role and assign permissions (3 scenarios - EC2, Lambda, Switch Role )
+16. Create 2 IAM Users(test1 and test2)
+    --> Test1 assign IAMFULLPERMISSIONS
+    --> TEST2 assign IAMREADONLYACCESS
+Logout and login with test1 and verify IAM permissions
+Logout and login with test2 and verify IAM permissions
+
+17. Create IAM Users(test3 )
+      This user should be able to only create users,list users,Get users, Get Groups, create group, list group, update user, update group
+    --> Attach this Policy test3 user
+
+Logout and login with test3 and verify permissions what test3 can do or cannot do
+
+Switch Roles (account id) : Create a test IAM User in your friends account using switch role (while creating role, attach IAM permissions)
+
+Create Analyzer(External) and Delete it
+
+https://medium.com/tensult/aws-policies-with-examples-8340661d35e9
