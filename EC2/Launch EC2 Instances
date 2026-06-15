@@ -1,0 +1,83 @@
+EC2
+=======
+1. Launch Linux-1 Instance and go through all options while launching EC2 instance
+2. Launch Windows EC2 instance with Termination Protection
+3. Launch another Linux-2 EC2 instance with STOP protection
+4. Stop Linux-2 EC2 instance and see . If not stopping, disable stop protection and stop
+5. Stop the EC2 instance and check the status
+6. Start the EC2 instance and check the status
+7. Reboot the EC2 instance and check the status -- ?
+8. Terminate the EC2 instances
+9. If you are not able to Terminate, Disable Terminate Protection Option --> Instance settings. --> Change termination protection --> Uncheck Enable
+10. Launch Linux-3 EC2 instance with Termination Protection and try to STOP and see if it is STOPPING as we have selected Termination Protection .
+11. Launch Linux-4 EC2 instance with STOP protection and try to Terminate and see as if we selected STOP Protection.
+
+Create a Launch template from LinuxInstance and Launch EC2 instance from the template
+
+See all Options from Actions
+12. Make Sure all EC2 instances are Terminated. Go to Dashboard and see everything is 0 expect Key-Pair and Security Group.
+
+Instance which are in Terminate state will get disappeared after 15 to 20 mins.
+
+
+
+
+
+
+
+**************************
+EC2
+*****************************
+
+TASKS:
+
+1. Launch Windows 2022 EC2 Instance(step 1 to step7(create a key pair and save it safe))
+   Add a new rule RDP protocol to the Security Group (dont do any changes to the default rule)
+   use remote desktop protocol to connect to windows machine(username: administrator, pwd: key-pair)
+
+2. Launch Linux redhat EC2 Instance and try to connect it
+Download Putty https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+Download PuttyGenerator
+    convert PEM to PPK using PuttyGen
+    --> Open PuttyGen
+    --> Load your Pem file (Load --> Choose Pem file --> save private key as xxxx.ppk)
+        Add a new rule SSH protocol to the Security Group(dont do any changes to the default rule)
+    Use Putty to connect to Linux machine(hostname: publicIP --> expand SSH --> select Auth--> credentials --> browse
+ppk file) --> Connect it
+
+https://mobaxterm.mobatek.net/download-home-edition.html
+
+3.Install MobaXterm and connect to Linux Machines --> Session --> SSH --> Remote Host(Put Public IP) --> Tick Specify username (ec2-user) --> Advanced SSH Settings --> Tick Use Private Key --> Select pem file
+
+3.1 Connect to Linux Machine using Terminal - Open Cmd Prompt --> Go to where the PEM file path --> paste the connect command [Instance --> Connect --> SSH Client]
+
+4. Try to stop and start and reboot EC2 instance --> public IP changes or not
+
+Reboot EC2 instance and see the Instance State ?
+Reboot EC2 instance and see Public IP Changes or not
+
+Try to stop and start the EC2 instance and see Private IP is changing or not
+
+5. Assign EIP to the Instance and try to stop and start --> EIP will change or not
+
+6. Disassociate EIP from the Instance and release it to AWS.
+
+7. Create Linux Launch template  and launch EC2 instances from it and then and delete it (launch ec2 instances from template)
+
+8. Launch EC2 instance with Launch more like this option
+
+9. Review options in ACTIONS
+
+10. Launch a Windows EC2 instance with Enable Shutdown behaviour = terminate, and login to the Windows EC2 instance, and shutdown the EC2 instance, see what happens(use Windows Instance)
+
+Rebooting the Windows EC2 instance and Go immediately to Instance Screenshot and check it what it shows.
+
+Enable SSH for anywhere now
+
+Launch Amazon Linux 2023 and Connecting using EC2 instance Connect
+
+
+11. Terminate EC2 instances.(if you have Termination protection enabled -->
+   disable that first from instance settings --> change termination protection)
+12. Delete Launch Template
+13. Check the EC2 dashboard, everything should be 0 expect Key-pair and SG.
