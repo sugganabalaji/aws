@@ -5,17 +5,24 @@ EC2
 3. Launch another Linux-2 EC2 instance with STOP protection
 4. Stop Linux-2 EC2 instance and see . If not stopping, disable stop protection and stop
 5. Stop the EC2 instance and check the status
+    -> Stopping/Stopped
 6. Start the EC2 instance and check the status
+    -> Pending/Running
 7. Reboot the EC2 instance and check the status -- ?
+    -> No change in status showing: Running
 8. Terminate the EC2 instances
 9. If you are not able to Terminate, Disable Terminate Protection Option --> Instance settings. --> Change termination protection --> Uncheck Enable
-10. Launch Linux-3 EC2 instance with Termination Protection and try to STOP and see if it is STOPPING as we have selected Termination Protection .
-11. Launch Linux-4 EC2 instance with STOP protection and try to Terminate and see as if we selected STOP Protection.
+10. Terminate the EC2 instance and check the status
+    -> Shutting-down/Terminated.
+11. Launch Linux-3 EC2 instance with Termination Protection and try to STOP and see if it is STOPPING as we have selected Termination Protection.
+    -> Stopping/Stopped
+12. Launch Linux-4 EC2 instance with STOP protection and try to Terminate and see as if we selected STOP Protection.
+    -> Failed to terminate (delete) an instance: The instance 'i-0cc33b61f46c03490' may not be terminated. Modify its 'disableApiStop' instance attribute and try again.
 
 Create a Launch template from LinuxInstance and Launch EC2 instance from the template
 
 See all Options from Actions
-12. Make Sure all EC2 instances are Terminated. Go to Dashboard and see everything is 0 expect Key-Pair and Security Group.
+13. Make Sure all EC2 instances are Terminated. Go to Dashboard and see everything is 0 expect Key-Pair and Security Group.
 
 Instance which are in Terminate state will get disappeared after 15 to 20 mins.
 
@@ -32,8 +39,27 @@ EC2
 TASKS:
 
 1. Launch Windows 2022 EC2 Instance(step 1 to step7(create a key pair and save it safe))
-   Add a new rule RDP protocol to the Security Group (dont do any changes to the default rule)
-   use remote desktop protocol to connect to windows machine(username: administrator, pwd: key-pair)
+   Add a new inbound rule RDP protocol to the Default Security Group (don't do any changes to the default rule)
+   use remote desktop protocol to connect to windows machine(username: Administrator, pwd: key-pair)
+
+   Step-by-Step Connection Process:
+   a. Configure Security Group
+       Navigate to the EC2 Console
+       Select your instance and go to the 'Security tab'
+       Edit the 'inbound rules' of the associated security group
+       Add a rule for type: RDP (port 3389) with Source type set from Custom to MyIp
+   b. Get Administrator Password
+       In the EC2 console, select/checkbox your instance and click Connect
+       Choose the 'RDP Client' tab
+       Click 'Get Password'
+       'Upload your private key file (.pem)' to decrypt the Administrator password
+       Copy the decrypted password (quf.!9LvfzpyU(-MD9*7YCiLjxYduavA)
+   c. Connect Using RDP Client
+       For Windows:
+           Open Remote Desktop Connection (built-in)
+           Enter the public DNS name or public IP address of your instance
+           Username: Administrator
+           Password: Use the decrypted password from above step b
 
 2. Launch Linux redhat EC2 Instance and try to connect it
 Download Putty https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
@@ -41,7 +67,7 @@ Download PuttyGenerator
     convert PEM to PPK using PuttyGen
     --> Open PuttyGen
     --> Load your Pem file (Load --> Choose Pem file --> save private key as xxxx.ppk)
-        Add a new rule SSH protocol to the Security Group(dont do any changes to the default rule)
+        Add a new inbound rule SSH protocol to the Security Group(dont do any changes to the default rule)
     Use Putty to connect to Linux machine(hostname: publicIP --> expand SSH --> select Auth--> credentials --> browse
 ppk file) --> Connect it
 
@@ -52,25 +78,32 @@ https://mobaxterm.mobatek.net/download-home-edition.html
 3.1 Connect to Linux Machine using Terminal - Open Cmd Prompt --> Go to where the PEM file path --> paste the connect command [Instance --> Connect --> SSH Client]
 
 4. Try to stop and start and reboot EC2 instance --> public IP changes or not
+    -> Not Changed Public IP
 
 Reboot EC2 instance and see the Instance State ?
+    -> Running
 Reboot EC2 instance and see Public IP Changes or not
+    -> Not Changed Public IP(Existing IP only)
 
 Try to stop and start the EC2 instance and see Private IP is changing or not
+    -> Not Changed Private IP(Static)
 
 5. Assign EIP to the Instance and try to stop and start --> EIP will change or not
+    -> EIP Not Changed(Static)
 
 6. Disassociate EIP from the Instance and release it to AWS.
 
-7. Create Linux Launch template  and launch EC2 instances from it and then and delete it (launch ec2 instances from template)
+7. Create Linux Launch template  and launch EC2 instances from it and then and delete it (launch ec2 instances from template) - issue with EBS volume related
 
 8. Launch EC2 instance with Launch more like this option
 
 9. Review options in ACTIONS
 
 10. Launch a Windows EC2 instance with Enable Shutdown behaviour = terminate, and login to the Windows EC2 instance, and shutdown the EC2 instance, see what happens(use Windows Instance)
+    -> Shutting-down/Terminated
 
 Rebooting the Windows EC2 instance and Go immediately to Instance Screenshot and check it what it shows.
+    -> Booting 'Red Hat Enterprise Linux (6.12.0-211.16.1.e110_2.x86_64) 10.2(Coughlan)''
 
 Enable SSH for anywhere now
 
