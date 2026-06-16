@@ -1,0 +1,37 @@
+**************************
+IMAGES and SNAPSHOTS TASKS
+**************************
+Launch a windows instance -->login to that instance --> create some files on desktop --> From Console --> Create image --> launch instance from the image you just created --> login to the newly created instance(password?) --> Check the files
+
+Launch Linux EC2 instance and do practicals with linux AMI
+
+Create a Image from Linux EC2 instance
+
+Copy the image from mumbai region to another region ireland (use Linux Image) --> once verified(dont wait until available), delete/deregister the image in ireland region (deregister)
+
+Encrypt the image --> use copy option --> check encryption option --> create image  --> From this Encrypted image launch ec2 instance --> login and see the difference
+
+Copy the encrypted image to same region(dont do in another region, do it in same region) (?)
+
+Copy the Snapshot(Linux Snapshot) to another region --> once verified(dont wait until available) ,delete the snapshot
+
+Encrypt the Snapshot and share it to the other AWS account ?
+
+Try share the image and snapshot to another account
+
+Try share the encrypted image to another account?
+
+Create a image from the snapshot
+
+Archive snapshot and restore it again(Dont do, it will take 24 hours and billable)
+
+Delete the snapshot and restore it again. by Recyclebin, use tags
+Delete the AMI's and restore it again. by Recyclebin, use tags
+
+Note: While doing Recyclebin task... Create Rule first and then delete only AMI"s dont delete snapshot along AMI.If you later recover AMI's, as it doesnt have snapshots, it will not restore.
+
+Recycle bin (assign tag to AMI and Snapshot, Create a retention rule --> delete the image, snapshot, and recover)
+Recyclebin (Get all resources to recyclebin)
+Delete the Recyclebin Retention Rule
+
+Terminate EC2 instances, Delete images, Delete snapshots, Delete RecycleBin Rules
