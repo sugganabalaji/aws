@@ -2,6 +2,7 @@
 IMAGES and SNAPSHOTS TASKS
 **************************
 Launch a windows instance -->login to that instance --> create some files on desktop --> From Console --> Create image --> launch instance from the image you just created --> login to the newly created instance(password?) --> Check the files
+    -> Launched Windows instance password works.
 
 Launch Linux EC2 instance and do practicals with linux AMI
 
