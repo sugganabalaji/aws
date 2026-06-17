@@ -1,0 +1,11 @@
+1. CROSS TASK  - see theory paint
+--> Exchange Server2 and Server3 ROOT volumes.
+
+2. Increase the root volume size from 30 GB to 50GB
+3. Add additional volume and make it available to the user.(10GB)
+4. Play with attach and detach volume for Root and Additional volumes
+   --> detach 1a root volume and attach it to other new 1a EC2 instance as root vol (same AZ)
+   --> detach 1a root vol and attach it to other new 1a EC2 instance as additional vol (same AZ)
+7. Life Cycle Manager policy and delete it --> make sure snapshots are created using UTC time (tag volumes properly)
+8. Terminate EC2 instances
+9. Delete additional volumes, life cycle policy
