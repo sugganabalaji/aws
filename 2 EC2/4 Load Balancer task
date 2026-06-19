@@ -1,0 +1,32 @@
+Load Balancer:
+***************
+1. Launch 2 Ec2 instance with the user data(server1 userdata put it as "My first webiste on server1 and vice versa on server2")
+2. Modify SG by adding HTTP protocol with myIp and dont modify default rule (all traffic)
+3. Access the 2 EC2 instances Public IP's on the browser address bar and verify the website is working or not
+4. Create Load Balancer (in health check ensure to have /index.html) --> create target group APP-TG and register targets in the TG
+5. Access ELB DNS Name(nasty URl).
+6. Check the targets in target groups, it should show healthy --> try stickiness(ELB sends requests to One EC2 instance)
+   --> configure stickyness
+7. Explore path based routing (create 4 instances, 2 with /index.html(App_TG) and 2 with /admin(Admin_TG) and add rules)
+     (Select Load Balancer and go to Listeners --> Add condition --> path --> /admin -->
+      THEN Forward to --> Admin_TG)
+8. Review all ELB Actions and Target Group Actions
+9. Stop one EC2 instance and access ELB (It should work)
+10. Terminate EC2 instance, ELB and target groups.
+
+user-data for /index.html
+#!/bin/bash
+yum install httpd -y #install Apache
+service httpd start #start Apache
+chkconfig httpd on #ON/OFF while EC2 Up/Down
+mkdir /var/www/html #Place App location
+echo 'Hey!! This is my First Website on EC2! Server-1' > /var/www/html/index.html #App Content
+
+user-data for /admin
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+mkdir /var/www/html
+echo 'Hey!! This is admin page on EC2! Server-3' > /var/www/html/admin #Path based configuration
+
