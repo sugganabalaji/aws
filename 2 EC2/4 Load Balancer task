@@ -1,6 +1,6 @@
 Load Balancer:
 ***************
-1. Launch 2 Ec2 instance with the user data(server1 userdata put it as "My first webiste on server1 and vice versa on server2")
+1. Launch 2 Linux Ec2 instance with the user data(server1 userdata put it as "My first webiste on server1 and vice versa on server2")
 2. Modify SG by adding HTTP protocol with myIp and dont modify default rule (all traffic)
 3. Access the 2 EC2 instances Public IP's on the browser address bar and verify the website is working or not
 4. Create Load Balancer (in health check ensure to have /index.html) --> create target group APP-TG and register targets in the TG
