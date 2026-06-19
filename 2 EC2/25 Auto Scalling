@@ -1,0 +1,25 @@
+***************************
+Auto-Scaling
+***************************
+1. Create Empty Target Group and then Create a Load Balancer
+1.1: Keep inbound rule HTTP protocol in your SG, and make sure you have default rule ALL TRAFFIC with self
+2. Create Launch Template(select AMI(RedHat), provide user data script)
+3. Create ASG from the created Launch configuration (min, DC, max)
+3.1: Check your targets in target groups, it should be healthy
+4. Access your ELB DNS Name.
+--> try to do manual scaling
+--> try to do schedule scaling
+--> try to do instance refresh
+--> try to terminate ec2 instances manually and see what happens
+4.1 : Terminate all EC2 instances manually and see how many EC2 instances will get launched ? is it DC or Min ?
+
+
+Modify User-Data(hey to Hello) by creating a new Launch template or a version, and update ASG, and see application is working with same ELB URL(Any downtime?) . Try with Launch before terminating and see how it is behaving
+
+Modify User-Data(Hello to Bye) by creating a new Launch template or a version, and update ASG, and see application is updated with same ELB URL(Any downtime?. Try with Terminate and Launch and see how it is behaving
+
+Modify User-Data(bye to GoodBye) by creating a new Launch template or a version, and update ASG, and see application is updated with same ELB URL(Any downtime?. Try Instance refresh and see how it is behaving
+
+5. Delete ASG
+6. Delete launch Template
+7. Delete ELB and TG
